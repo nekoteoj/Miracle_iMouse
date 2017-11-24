@@ -1053,8 +1053,8 @@ struct acValVector {
 */
 struct postDataVector {
   int8_t option;
-  int8_t x;
-  int8_t y;
+  int16_t x;
+  int16_t y;
 } postData;
 
 // End declare global variables here ----------------------------
@@ -1093,6 +1093,7 @@ void setup() {
 
   // Setting up Button
   pinMode(LEFT_BUTTON, INPUT);
+  pinMode(RIGHT_BUTTON, INPUT);
   lastClickTime = millis();
 }
 
@@ -1168,16 +1169,16 @@ inline void tryMoveCursor() {
   postData.option = 2;
   if (acVal.x >= TRIG_DEG || acVal.x <= -TRIG_DEG) {
     if (acVal.x > 0) {
-      postData.x = (int8_t) (20 * acVal.x - 20);
+      postData.x = (int16_t) (20 * acVal.x - 20);
     } else {
-      postData.x = (int8_t) (20 * acVal.x + 20);
+      postData.x = (int16_t) (20 * acVal.x + 20);
     }
   }
   if (acVal.y >= TRIG_DEG || acVal.y <= -TRIG_DEG) {
     if (acVal.y > 0) {
-      postData.y = (int8_t) (-20 * acVal.y + 20);
+      postData.y = (int16_t) (-20 * acVal.y + 20);
     } else {
-      postData.y = (int8_t) (-20 * acVal.y - 20);
+      postData.y = (int16_t) (-20 * acVal.y - 20);
     }
   }
   if (postData.x != 0 || postData.y != 0) {
